@@ -5,14 +5,19 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -23,26 +28,52 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.repte2_albertorodellar.R
 import com.example.repte2_albertorodellar.model.Routes
+import com.example.repte2_albertorodellar.viewmodel.Repte2ViewModel
 
 @Composable
-fun GameScreen(navController: NavController) {
+fun GameScreen(navController: NavController, repte2ViewModel: Repte2ViewModel) {
+    var name = ""
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black),
+            .background(Color.White),
         contentAlignment = Alignment.Center
     ) {
-        Button(
-            onClick = {
-                navController.navigate(Routes.ResultScreen.route)
-            },
-            modifier = Modifier
-                .wrapContentWidth()
-                .padding(top = 32.dp),
-            shape = RoundedCornerShape(4.dp),
+        Column(
+            modifier = Modifier.align(Alignment.Center)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(text = "Game")
+            Image(
+                painter = painterResource(id = R.drawable.dragonball_daima_logo),
+                contentDescription = "Dragon Ball Logo",
+                modifier = Modifier.size(200.dp)
+            )
+            TextField(
+                value = name,
+                onValueChange = {
+                    name = it
+                },
+                label = { Text(text = "Nom del personatge") }
+            )
+            Button(
+                onClick = {
+
+                    repte2ViewModel.characterName = name
+                    navController.navigate(Routes.ResultScreen.route)
+                },
+                modifier = Modifier
+                    .width(150.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.LightGray,
+                    contentColor = Color.Black
+                ),
+                shape = RoundedCornerShape(4.dp),
+            ) {
+                Text(text = "Mostrar")
+            }
         }
     }
 }

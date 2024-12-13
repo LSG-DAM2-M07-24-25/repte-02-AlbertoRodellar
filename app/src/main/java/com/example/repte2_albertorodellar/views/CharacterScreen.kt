@@ -25,10 +25,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.repte2_albertorodellar.R
 import com.example.repte2_albertorodellar.model.Routes
 import com.example.repte2_albertorodellar.viewmodel.Repte2ViewModel
@@ -51,7 +49,7 @@ fun CharacterScreen(navController: NavController, repte2ViewModel: Repte2ViewMod
                 contentDescription = "Dragon Ball Logo",
                 modifier = Modifier.size(200.dp)
             )
-            CharactersRows()
+            CharactersRows(repte2ViewModel)
             Button(
                 onClick = {
                     navController.navigate(Routes.GameScreen.route)
@@ -71,7 +69,7 @@ fun CharacterScreen(navController: NavController, repte2ViewModel: Repte2ViewMod
 }
 
 @Composable
-fun CharactersRows(){
+fun CharactersRows(repte2ViewModel: Repte2ViewModel) {
     val characters = mapOf(
         "goku" to R.drawable.goku,
         "gomah" to R.drawable.gomah,
@@ -95,7 +93,7 @@ fun CharactersRows(){
             RadioButton(
                 selected = selectedOption == char,
                 onClick = {
-                    Repte2ViewModel.setCharacter(selectedOption)
+                    repte2ViewModel.character = selectedOption
                 }
             )
         }

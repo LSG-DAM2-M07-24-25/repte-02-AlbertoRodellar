@@ -50,8 +50,8 @@ fun Repte2App(modifier: Modifier, repte2ViewModel: Repte2ViewModel){
     ) {
         composable(Routes.LaunchScreen.route) { LaunchScreen(navigationController) }
         composable(Routes.CharacterScreen.route) { CharacterScreen(navigationController, repte2ViewModel) }
-        composable(Routes.GameScreen.route) { GameScreen(navigationController) }
-        composable(Routes.ResultScreen.route) { ResultScreen(navigationController) }
+        composable(Routes.GameScreen.route) { GameScreen(navigationController, repte2ViewModel) }
+        composable(Routes.ResultScreen.route) { ResultScreen(navigationController, repte2ViewModel) }
 
     }
 }

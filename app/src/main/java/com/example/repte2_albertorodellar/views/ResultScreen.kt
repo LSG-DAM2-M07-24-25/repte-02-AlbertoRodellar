@@ -16,13 +16,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.repte2_albertorodellar.model.Routes
+import com.example.repte2_albertorodellar.viewmodel.Repte2ViewModel
 
 @Composable
-fun ResultScreen(navController: NavController) {
+fun ResultScreen(navController: NavController, repte2ViewModel: Repte2ViewModel) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black),
+            .background(Color.White),
         contentAlignment = Alignment.Center
     ) {
         Button(
